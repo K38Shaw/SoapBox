@@ -1,0 +1,59 @@
+version: '3'
+services:
+  #   Configure BD if the project needs it
+#  db:
+#    image: postgres:13-alpine
+#    container_name: postgres_db
+#    environment:
+#      POSTGRES_USER: user
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_DB: mydatabase
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - ./postgres_data:/var/lib/postgresql/data
+  backend:
+    build:
+      context: ./src/app/backend
+    container_name: backend
+    environment:
+      - PORT=8000
+      # Add all environment variables here
+    ports:
+      - "8000:8000"
+    #Uncomment this line if you want to persist the data for the backend
+    #    volumes:
+    #      - backend-data:/usr/src/app
+    depends_on:
+      - db
+    networks:
+      - gt-network
+
+  frontend:
+    build:
+      context: ./src/app/frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+      # Add all environment variables here
+    environment:
+      - PORT=3000
+    #Uncomment this line if you want to persist the data for the frontend
+#    volumes:
+#      - frontend_data:/usr/src/app/
+    stdin_open: true
+    networks:
+      - gt-network
+networks:
+  gt-network:
+    driver: bridge
+#Volumes for persisting data
+volumes:
+  postgres_data:
+    driver: local
+  backend_data:
+    driver: local
+  frontend_data:
+      driver: local
+
+
