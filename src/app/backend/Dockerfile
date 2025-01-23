@@ -4,15 +4,14 @@ FROM python:3.9
 # Set working directory inside the container
 WORKDIR /app
 
-# Copy requirements.txt and install dependencies
+# Copy the Python dependencies list (if it exists later, uncomment this)
 COPY requirements.txt .
+
+# Temporarily skip dependency installation until `requirements.txt` is available
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the backend source code into the container
+# Copy all backend source files into the container
 COPY . .
 
-# Expose the port the backend service listens on
-EXPOSE 8000
-
-# Command to run the backend
-CMD ["python", "app.py"]
+# Adjust entry point based on your structure (e.g., src/main.py or similar)
+CMD ["python", "src/main.py"]

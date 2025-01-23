@@ -1,16 +1,16 @@
-# Use the official Node.js image
+# Use the Node.js LTS image
 FROM node:16
 
 # Set working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy the package.json and package-lock.json
 COPY package*.json ./
 
-# Install Node.js dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the React source code into the container
+# Copy the rest of the frontend source code
 COPY . .
 
 # Expose the port for the React development server

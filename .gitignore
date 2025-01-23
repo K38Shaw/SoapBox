@@ -1,2 +1,74 @@
 
 /.idea
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Dependency directories
+node_modules/
+venv/
+env/
+
+# Build artifacts
+build/
+dist/
+.eggs/
+*.egg-info/
+wheels/
+.cache/
+
+# Byte-compiled / optimized / DLL files (Python)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+.Python
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# React-related
+.cache/
+.next/
+.storybook-out/
+public/static/
+public/favicon.ico
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# IDE/editor settings
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Docker-related
+*.pid
+*.tar
+*.sock
