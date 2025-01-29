@@ -1,6 +1,38 @@
 version: '3.8'
 
 services:
+  soapbox-db:
+    image: 'couchbase:latest'
+    container_name: soapbox-db
+    ports:
+      - 8091-8094:8091-8094
+      - 11210:11210
+    volumes:
+      - ./src/app/backend/scripts:/opt/couchbase/scripts
+      # - couchbase-volume:/opt/couchbase/var/lib/couchbase
+      # - ./backend/scripts:/opt/couchbase/scripts
+    networks:
+      - soapbox-network
+
+  db-init:
+    image: docker
+    container_name: db-init
+    depends_on:
+      - soapbox-db
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./backend/scripts:/scripts
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - |
+        sleep 20 && \
+        docker exec soapbox-db sh -c "
+        /opt/couchbase/scripts/initialize_db.sh \
+        \"$COUCHBASE_HOST\" \"$COUCHBASE_PORT\" \"$COUCHBASE_USERNAME\" \"$COUCHBASE_PASSWORD\" \"$COUCHBASE_CLUSTER_NAME\" \"$DEFAULT_BUCKET_NAME\" \"$RAM_SIZE\""
+
+    networks:
+      - soapbox-network
   backend:
     build:
       context: ./src/app/backend
