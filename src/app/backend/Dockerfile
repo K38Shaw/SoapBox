@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Temporarily skip dependency installation until `requirements.txt` is available
-RUN if [ -s requirements.txt ]; thenpip install --no-cache-dir -r requirements.txt; fi
+RUN if [ -s requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
 # Copy all backend source files into the container
 COPY . .
