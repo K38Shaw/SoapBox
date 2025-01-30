@@ -122,6 +122,9 @@ To run this project, ensure you have the following installed:
 
 #### Running Frontend in Isolation
   ```bash
+  cd src/app/frontend
+  ```
+  ```bash
   npm run build 
   ```
   ```bash
