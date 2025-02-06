@@ -1,6 +1,7 @@
 variables:
   major: 1
   minor: 0
+
 trigger:
   branches:
     include:
@@ -8,41 +9,97 @@ trigger:
       - Release-*
       - V-*
       - Feature-*
-      - US-*
+      - MVP
+      - DevOps
+
 pool:
   vmImage: 'ubuntu-latest'
+
 stages:
   - stage:
-    displayName: Build_Feature_Version_Number
-    condition: ne(variables['Build.SourceBranch'], 'refs/heads/V-1.0')
-    jobs:
-      - job: Build_Feature_Version_Number
-        variables:
-          patch: $[counter(variables['minor'], 0)]
-        steps:
-          - bash: |
-              echo "##vso[build.updatebuildnumber]GT-$(Build.SourceBranchName)-$(Build.BuildID)"
-            name: SetFeatureBuildName
+      displayName: Build_Feature_Version_Number
+      condition: ne(variables['Build.SourceBranch'], 'refs/heads/V-1.0')
+      jobs:
+        - job: Build_Feature_Version_Number
+          variables:
+            patch: $[counter(variables['minor'], 0)]
+          steps:
+            - bash: |
+                echo "##vso[build.updatebuildnumber]GT-$(Build.SourceBranchName)-$(Build.BuildID)"
+              name: SetFeatureBuildName
+
   - stage:
-    displayName: Build_Release_Version_Number
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/v-1.0')
-    jobs:
-      - job: Build_Release_Version_Number
-        variables:
-          patch: $[counter(variables['minor'], 0)]
-        steps:
-          - bash: |
-              echo "##vso[build.updatebuildnumber]$(major).$(minor).$(patch)"
-            name: SetMasterBuildName
+      displayName: Build_Release_Version_Number
+      condition: eq(variables['Build.SourceBranch'], 'refs/heads/v-1.0')
+      jobs:
+        - job: Build_Release_Version_Number
+          variables:
+            patch: $[counter(variables['minor'], 0)]
+          steps:
+            - bash: |
+                echo "##vso[build.updatebuildnumber]$(major).$(minor).$(patch)"
+              name: SetMasterBuildName
+
   - stage: CI
-    displayName: Build Project
+    displayName: Build and Test Project
     condition: always()
     jobs:
       - job: build
         displayName: 'Build and Test'
         steps:
-          - script: echo "Building and testing the project..."
-            displayName: 'Run build script'
+          ### ✅ Set up Python for Backend
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.9'
+              addToPath: true
+            displayName: 'Use Python 3.9'
+
+          - script: |
+              python -m venv venv
+              source venv/bin/activate
+              pip install --upgrade pip
+              pip install -r src/app/backend/requirements.txt
+            displayName: 'Install Python Dependencies'
+
+          - script: |
+              python -m unittest discover -s src/app/backend/tests
+            displayName: 'Run Backend Tests'
+
+          ### ✅ Set up Node.js for Frontend
+          - task: UseNode@1
+            inputs:
+              version: '16.x'
+            displayName: 'Use Node.js 16'
+
+          - script: |
+              cd src/app/frontend
+              npm install
+            displayName: 'Install Frontend Dependencies'
+
+          - script: |
+              cd src/app/frontend
+              npm run build
+            displayName: 'Build Frontend'
+
+          - script: |
+              cd src/app/frontend
+              npm test
+            displayName: 'Run Frontend Tests'
+
+          ### ✅ Publish Artifacts for Deployment
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: 'src/app/frontend/build'
+              artifactName: 'frontend-artifacts'
+            displayName: 'Publish Frontend Build Artifacts'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: 'src/app/backend'
+              artifactName: 'backend-artifacts'
+            displayName: 'Publish Backend Build Artifacts'
+
+          ### ✅ Generate Work Item for Build
           - task: CreateWorkItem@2
             inputs:
               teamProject: 'Initiatives'
