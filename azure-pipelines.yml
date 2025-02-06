@@ -16,29 +16,29 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-  - stage:
-      displayName: Build_Feature_Version_Number
-      condition: ne(variables['Build.SourceBranch'], 'refs/heads/V-1.0')
-      jobs:
-        - job: Build_Feature_Version_Number
-          variables:
-            patch: $[counter(variables['minor'], 0)]
-          steps:
-            - bash: |
-                echo "##vso[build.updatebuildnumber]GT-$(Build.SourceBranchName)-$(Build.BuildID)"
-              name: SetFeatureBuildName
+  - stage: Build_Feature_Version_Number
+    displayName: "Build Feature Version Number"
+    condition: ne(variables['Build.SourceBranch'], 'refs/heads/V-1.0')
+    jobs:
+      - job: Build_Feature_Version_Number
+        variables:
+          patch: $[counter(variables['minor'], 0)]
+        steps:
+          - bash: |
+              echo "##vso[build.updatebuildnumber]GT-$(Build.SourceBranchName)-$(Build.BuildID)"
+            name: SetFeatureBuildName
 
-  - stage:
-      displayName: Build_Release_Version_Number
-      condition: eq(variables['Build.SourceBranch'], 'refs/heads/v-1.0')
-      jobs:
-        - job: Build_Release_Version_Number
-          variables:
-            patch: $[counter(variables['minor'], 0)]
-          steps:
-            - bash: |
-                echo "##vso[build.updatebuildnumber]$(major).$(minor).$(patch)"
-              name: SetMasterBuildName
+  - stage: Build_Release_Version_Number
+    displayName: "Build Release Version Number"
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/v-1.0')
+    jobs:
+      - job: Build_Release_Version_Number
+        variables:
+          patch: $[counter(variables['minor'], 0)]
+        steps:
+          - bash: |
+              echo "##vso[build.updatebuildnumber]$(major).$(minor).$(patch)"
+            name: SetMasterBuildName
 
   - stage: CI
     displayName: Build and Test Project
