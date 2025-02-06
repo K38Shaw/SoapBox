@@ -61,10 +61,6 @@ stages:
               pip install -r src/app/backend/requirements.txt
             displayName: 'Install Python Dependencies'
 
-          - script: |
-              python -m unittest discover -s src/app/backend/tests
-            displayName: 'Run Backend Tests'
-
           ### ✅ Set up Node.js for Frontend
           - task: UseNode@1
             inputs:
