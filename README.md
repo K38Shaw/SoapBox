@@ -33,6 +33,28 @@ This project is a fullstack application with a **React frontend** and a **Python
 
 ## Setup Instructions
 
+### Make Initialization Executable
+  ```bash
+  chmod +x src/app/backend/scripts/initialize_db.sh
+  ```
+
+### Installing Dependancies
+  ```bash
+  cd src/app/backend
+  ```
+  ```bash
+  pip install --no-cache-dir -r requirements.txt
+  ```
+  Go back to root level
+  ```bash
+  cd src/app/frontend
+  ```
+  ```bash
+  npm install
+  ```
+
+
+
 ## Branch Naming Conventions
 
 In this project, all branches must follow the naming conventions listed below to ensure consistent and clear communication of branch purposes:
@@ -90,16 +112,36 @@ To run this project, ensure you have the following installed:
 
 ### Building and Running the Project
 
-1. **Build and run the services** using Docker Compose:
+#### Running Backend in Isolation
+  ```bash
+  cd src/app/backend
+  ```
+  ```bash
+  python3 src/main.py
+  ```
+
+#### Running Frontend in Isolation
+  ```bash
+  cd src/app/frontend
+  ```
+  ```bash
+  npm run build 
+  ```
+  ```bash
+  npm start
+  ```
+#### Docker
+
+1. **Build and run the services** at the root level using Docker Compose:
    ```bash
-   docker-compose up --build
+   docker compose up --build
    ```
 
 2. Access the frontend at `http://localhost:3000` and the backend at `http://localhost:8000`.
 
 ### Technologies Used
 
-- **React** for the frontend
+- **React Next.js** for the frontend
 - **Python** (Flask or FastAPI) for the backend
 - **Docker Compose** to manage containers
 

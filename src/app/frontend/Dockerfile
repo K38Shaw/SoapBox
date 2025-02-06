@@ -1,22 +1,20 @@
-# Use an official node image
-FROM node:16-alpine
+# Use the Node.js LTS image
+FROM node:16
 
-# Set the working directory
-WORKDIR /usr/src/app
+# Set working directory inside the container
+WORKDIR /app
 
-# Copy package.json and install dependencies
+# Copy the package.json and package-lock.json
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-# Copy the source code
-COPY src/ .
+# Copy the rest of the frontend source code
+COPY . .
 
-# Build the React app
-RUN npm run build
-
-# Serve the app using a static server
-RUN npm install -g serve
-CMD ["serve", "-s", "build"]
-
-# Expose port 3000
+# Expose the port for the React development server
 EXPOSE 3000
+
+# Start the React development server
+CMD ["npm", "start"]

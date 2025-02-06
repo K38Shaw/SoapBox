@@ -1,17 +1,17 @@
-# Use an official Python runtime as a parent image
-FROM python:3.10-alpine
+# Use the official Python image
+FROM python:3.9
 
-# Set the working directory
-WORKDIR /usr/src/app
+# Set working directory inside the container
+WORKDIR /app
 
-# Copy the current directory contents into the container
-COPY src/ .
+# Copy the Python dependencies list (if it exists later, uncomment this)
+COPY requirements.txt .
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Temporarily skip dependency installation until `requirements.txt` is available
+RUN if [ -s requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
-# Make port 8000 available
-EXPOSE 8000
+# Copy all backend source files into the container
+COPY . .
 
-# Run the backend
-CMD ["python", "app.py"]
+# Adjust entry point based on your structure (e.g., src/main.py or similar)
+CMD ["python", "src/main.py"]

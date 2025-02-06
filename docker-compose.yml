@@ -1,59 +1,66 @@
-version: '3'
+version: '3.8'
+
 services:
-  #   Configure BD if the project needs it
-#  db:
-#    image: postgres:13-alpine
-#    container_name: postgres_db
-#    environment:
-#      POSTGRES_USER: user
-#      POSTGRES_PASSWORD: password
-#      POSTGRES_DB: mydatabase
-#    ports:
-#      - "5432:5432"
-#    volumes:
-#      - ./postgres_data:/var/lib/postgresql/data
+  soapbox-db:
+    image: 'couchbase:latest'
+    container_name: soapbox-db
+    ports:
+      - 8091-8094:8091-8094
+      - 11210:11210
+    volumes:
+      - ./src/app/backend/scripts:/opt/couchbase/scripts
+      # - couchbase-volume:/opt/couchbase/var/lib/couchbase
+      # - ./backend/scripts:/opt/couchbase/scripts
+    networks:
+      - soapbox-network
+
+  db-init:
+    image: docker
+    container_name: db-init
+    depends_on:
+      - soapbox-db
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./backend/scripts:/scripts
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - |
+        sleep 20 && \
+        docker exec soapbox-db sh -c "
+        /opt/couchbase/scripts/initialize_db.sh \
+        \"$COUCHBASE_HOST\" \"$COUCHBASE_PORT\" \"$COUCHBASE_USERNAME\" \"$COUCHBASE_PASSWORD\" \"$COUCHBASE_CLUSTER_NAME\" \"$DEFAULT_BUCKET_NAME\" \"$RAM_SIZE\""
+
+    networks:
+      - soapbox-network
   backend:
     build:
       context: ./src/app/backend
-    container_name: backend
-    environment:
-      - PORT=8000
-      # Add all environment variables here
+      dockerfile: Dockerfile
+    container_name: soapbox-backend
     ports:
       - "8000:8000"
-    #Uncomment this line if you want to persist the data for the backend
-    #    volumes:
-    #      - backend-data:/usr/src/app
-    depends_on:
-      - db
+    volumes:
+      - ./src/app/backend:/app
     networks:
-      - gt-network
+      - soapbox-network
 
   frontend:
     build:
       context: ./src/app/frontend
-    container_name: frontend
+      dockerfile: Dockerfile
+    container_name: soapbox-frontend
     ports:
       - "3000:3000"
-      # Add all environment variables here
     environment:
-      - PORT=3000
-    #Uncomment this line if you want to persist the data for the frontend
-#    volumes:
-#      - frontend_data:/usr/src/app/
-    stdin_open: true
+      - REACT_APP_BACKEND_URL=http://localhost:8000
+    volumes:
+      - ./src/app/frontend:/app
+    depends_on:
+      - backend
     networks:
-      - gt-network
+      - soapbox-network
+
 networks:
-  gt-network:
+  soapbox-network:
     driver: bridge
-#Volumes for persisting data
-volumes:
-  postgres_data:
-    driver: local
-  backend_data:
-    driver: local
-  frontend_data:
-      driver: local
-
-
