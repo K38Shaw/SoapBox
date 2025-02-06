@@ -9,7 +9,8 @@ trigger:
       - Release-*
       - V-*
       - Feature-*
-      - US-*
+      - MVP
+      - DevOps
 
 pool:
   vmImage: 'ubuntu-latest'
