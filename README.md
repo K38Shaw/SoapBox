@@ -79,7 +79,7 @@ In this project, all branches must follow the naming conventions listed below to
   Purpose: Created for working on new features or improvements. Once the feature is complete, it will be merged into the relevant version or release branch.
 
 - **User Story Branches**:  
-  Branch name format: `US-UserStoryNumber-ResourceName`  
+  Branch name format: `US-UserStoryNumber-UserStoryName`  
   Example: `US-0000-JohnDoe`  
   Purpose: These branches are tied to specific user stories in Azure DevOps, and they help track progress on a particular resource or component.
 
