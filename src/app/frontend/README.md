@@ -1,68 +1,36 @@
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-# Frontend Service
+## Getting Started
 
-This directory contains the frontend service for the fullstack application. It is a React-based application that communicates with the backend service via APIs.
-
-## Setup Instructions
-
-### Environment Variables
-
-- Create a `.env` file in this directory.
-- Add the following environment variables:
-
-```
-REACT_APP_API_URL=http://localhost:8000/api
-PORT=3000
-```
-
-### Docker Setup
-
-1. The `Dockerfile` defines the configuration for the React frontend.
-2. Build and run the container:
-   ```bash
-   docker-compose up --build
-   ```
-
-### Running the Frontend Locally
-
-You can also run the frontend locally without Docker:
-
-1. Install the dependencies:
-   ```bash
-   npm install
-   ```
-
-2. Start the frontend:
-   ```bash
-   npm start
-   ```
-
-### Testing
-
-Tests are located in the `__tests__` directory. Run the tests with:
+First, run the development server:
 
 ```bash
-npm test
-```
-### Features
-This frontend service provides the following features:
-This frontend services needs to be updated with the features that are provided by the frontend service.
-### App Structure
-
-The frontend uses the following directory structure:
-
-```
-src/
-├── components/         # Reusable components
-├── pages/              # Page components
-├── hooks/              # Custom hooks
-└── services/           # API service logic
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### Build
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-To build the frontend for production:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-npm run build
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

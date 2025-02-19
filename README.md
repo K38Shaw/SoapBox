@@ -1,5 +1,5 @@
 
-# GT-REACT-PYTHON-TEMPLATE
+# Practicum2024-2025SoapboxProject
 
 This project is a fullstack application with a **React frontend** and a **Python backend**, orchestrated using **Docker Compose**.
 
@@ -15,11 +15,17 @@ This project is a fullstack application with a **React frontend** and a **Python
 │   └── app
 │       ├── backend
 │       │   ├── __tests__            # Unit/Integration tests for backend
+│       │   ├── n1ql                 # couchBase scripts
+│       │   ├── scripts              # Bash scripts for setups
+│       │   │   └── initialize_db.sh # Initializes couchBase database 
+│       │   ├── requirements.txt     # Dependency list for backend
 │       │   ├── README.md            # Backend-specific documentation
 │       │   ├── .env                 # Backend-specific environment variables
 │       │   ├── Dockerfile           # Docker setup for the backend
 │       │   ├── .dockerignore        # Ignore files for backend Docker context
-│       │   └── src                  # Source code for the backend
+│       │   ├── src                  # Source code for the backend
+│       │   │   ├── services         # Componentized services to support backend
+│       │   │   └── main.py          # Entry point for backend service
 │       │   └── logs/                # Directory for logs, can be mounted to host
 │       └── frontend
 │           ├── __tests__            # Unit/Integration tests for frontend
@@ -28,6 +34,7 @@ This project is a fullstack application with a **React frontend** and a **Python
 │           ├── .dockerignore        # Ignore files for frontend Docker context
 │           ├── src                  # Source code for the frontend
 │           ├── public/              # Static files for the frontend
+│           ├── package.json         # Dependency list for frontend
 │           └── README.md            # Frontend-specific documentation
 ```
 
@@ -43,7 +50,7 @@ This project is a fullstack application with a **React frontend** and a **Python
   cd src/app/backend
   ```
   ```bash
-  pip install --no-cache-dir -r requirements.txt
+  pip3 install --no-cache-dir -r requirements.txt
   ```
   Go back to root level
   ```bash
@@ -74,13 +81,13 @@ In this project, all branches must follow the naming conventions listed below to
   Purpose: Maintains a versioned codebase, primarily for bug fixes or patches related to a specific version.
 
 - **Feature Branches**:  
-  Branch name format: `Feature-FeatureNumber-ResourceName`  
+  Branch name format: `Feature-FeatureNumber-FeatureName`  
   Example: `Feature-0000-JohnDoe`  
   Purpose: Created for working on new features or improvements. Once the feature is complete, it will be merged into the relevant version or release branch.
 
 - **User Story Branches**:  
-  Branch name format: `US-UserStoryNumber-ResourceName`  
-  Example: `US-0000-JohnDoe`  
+  Branch name format: `US-UserStoryNumber-UserStoryName`  
+  Example: `US-1825-As-An-Engineer`  
   Purpose: These branches are tied to specific user stories in Azure DevOps, and they help track progress on a particular resource or component.
 
 
