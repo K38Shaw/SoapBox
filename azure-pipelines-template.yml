@@ -78,7 +78,7 @@ stages:
             displayName: 'Build Frontend'
 
 
-          ### ✅ Publish Artifacts for Deployment
+          # ### ✅ Publish Artifacts for Deployment
           - task: PublishBuildArtifacts@1
             inputs:
               pathToPublish: 'src/app/frontend/build'
