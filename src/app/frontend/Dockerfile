@@ -13,9 +13,6 @@ RUN npm install
 # Copy the entire project
 COPY . .
 
-# Ensure Next.js production build is generated
-RUN npm run build
-
 # Expose the necessary port
 EXPOSE 3000
 
