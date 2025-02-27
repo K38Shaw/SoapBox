@@ -5,7 +5,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: linear-gradient(to bottom right, rgba(157, 148, 254, 0.82), rgba(241, 172, 255, 0.66));
     --foreground: #ededed;
   }
 }
@@ -28,6 +28,10 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+div {
+  margin-bottom: 1em;
 }
 
 a {
