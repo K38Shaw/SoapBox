@@ -1,8 +1,8 @@
 import os  # For environment variable access using os.getenv
-from couchbase.cluster import Cluster  # To initialize the Couchbase cluster connection
-from couchbase.auth import PasswordAuthenticator  # For Couchbase authentication
-from couchbase.options import ClusterOptions  # For configuring Couchbase cluster options
-from couchbase.collection import Collection  # To define the Collection type
+from couchbase.cluster import Cluster
+from couchbase.auth import PasswordAuthenticator
+from couchbase.options import ClusterOptions
+from couchbase.collection import Collection
 
 class CouchbaseServices:
     def __init__(self):

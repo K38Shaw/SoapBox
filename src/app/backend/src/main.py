@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from services.soapbox_api_service import SoapboxAPIService
+from services.couchbaseServices import SoapboxAPIService
 
 # Create the Flask app
 app = Flask(__name__)
