@@ -1,1 +1,3 @@
-numpy
+couchbase
+pytest
+pytest-mock
