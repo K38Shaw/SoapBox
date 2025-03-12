@@ -1,10 +1,14 @@
-import time
+from flask import Flask, jsonify # type: ignore
 
-def helloworld():
-    while True:
-        print("Hello World")
-        time.sleep(30)
+app = Flask(__name__)
 
+test_data = {
+    "message": "Welcome to the Flask API",
+    "status": "success"
+}
+@app.route('/api/test', methods=['GET'])
+def get_test_data():
+    return jsonify(test_data)
 
-
-helloworld()
+if __name__ == '__main__':
+    app.run(debug=True)
