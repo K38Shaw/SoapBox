@@ -58,6 +58,9 @@ public/favicon.ico
 .env.development
 .env.production
 .env.test
+.venv
+*/.env
+*/*/*/.env
 
 # IDE/editor settings
 .idea/
