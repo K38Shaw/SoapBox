@@ -1,3 +1,1 @@
-couchbase
-pytest
-pytest-mock
+couchbase==4.3.5
