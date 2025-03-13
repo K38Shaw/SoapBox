@@ -77,3 +77,5 @@ public/favicon.ico
 *.sock
 
 *storybook.log
+src/app/frontend/package-lock.json
+
