@@ -14,6 +14,6 @@ class Post(BaseEntity):
 
 class PostBaseService(BaseService[Post]):
     def generate_id(self, entity: Post) -> str:
-        # Example: generate a unique ID using title and timestamp
+       
         timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
         return f"post::{entity.title.replace(' ', '_').lower()}::{timestamp}"
