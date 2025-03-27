@@ -1,9 +1,5 @@
 import type { Preview } from '@storybook/react'
 
-import "../src/components/closedCardView/ClosedCardView.css"; // Adjust path if needed
-
-
-
 const preview: Preview = {
   parameters: {
     controls: {

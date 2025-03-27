@@ -58,6 +58,9 @@ public/favicon.ico
 .env.development
 .env.production
 .env.test
+.venv
+*/.env
+*/*/*/.env
 
 # IDE/editor settings
 .idea/
@@ -72,3 +75,7 @@ public/favicon.ico
 *.pid
 *.tar
 *.sock
+
+*storybook.log
+src/app/frontend/package-lock.json
+
