@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "set HOST=0.0.0.0 && set PORT=3000 && cross-env NODE_ENV=development NODE_OPTIONS='--inspect' next dev --turbopack ",
+    "devSSL": "cross-env NODE_ENV=development next dev --turbopack --experimental-https --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
