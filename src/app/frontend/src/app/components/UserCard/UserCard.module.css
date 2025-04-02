@@ -1,0 +1,25 @@
+/* UserCard.module.css */
+
+.card {
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: black;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .username {
+    font-size: 18px;
+    font-weight: 600;
+    color: white; /* Blue color */
+  }
+  
+  .username:hover {
+    text-decoration: underline;
+  }
+  

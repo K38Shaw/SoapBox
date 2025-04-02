@@ -1,0 +1,59 @@
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal width for topic and image */
+  grid-template-rows: auto; /* Height adjusts dynamically */
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #ddd; /* Border around the entire post */
+  width: 100vw; /* Ensures full width */
+  max-height: 400px; /* Reducing height */
+}
+
+.topic {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align text to the top */
+  align-items: flex-start; /* Align text to the left */
+  font-size: 16px; /* Reduce font size */
+  font-weight: bold;
+  border-right: 2px solid white; /* Divider between topic & image */
+  text-align: left;
+  padding: 8px; /* Adds spacing */
+  width: 100%; /* Ensures full width inside its column */
+  word-wrap: break-word; /* Allows word wrapping */
+  overflow-wrap: break-word; /* Ensures long words break properly */
+}
+
+.body {
+  font-size: 14px; /* Reduce font size */
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 100%; /* Ensures text stays within the box */
+  white-space: normal; /* Ensures text wraps */
+  word-wrap: break-word; /* Breaks long words if necessary */
+  overflow-wrap: break-word;
+  max-height: 100px; /* Restricting height */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add '...' when text overflows */
+}
+
+.media {
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px; /* Reduce padding */
+  width: 100%; /* Ensure media takes full space */
+  max-height: 180px; /* Reduce image size */
+}
+
+.media img {
+  width: 80px; /* Make image smaller */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px; /* Optional rounded corners */
+}

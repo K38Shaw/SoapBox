@@ -1,0 +1,32 @@
+.bottomNav {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to right, #6a00f4, #ff00ff);
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  align-items: center;
+}
+
+.navIcon {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  color: white;
+}
+
+.searchContainer {
+  position: relative;
+}
+
+.searchInput {
+  width: 150px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}

@@ -1,0 +1,24 @@
+.profileHeader {
+  background-color: black;
+  color: black;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 60%;
+  background-color: gray;
+  display: inline-block;
+  justify-content: center;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}

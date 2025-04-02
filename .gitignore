@@ -72,3 +72,5 @@ public/favicon.ico
 *.pid
 *.tar
 *.sock
+
+*storybook.log
