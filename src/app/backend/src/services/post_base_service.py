@@ -2,6 +2,7 @@ from typing import Optional
 from datetime import datetime
 from base_service import BaseService, CouchbaseService
 from base_service import BaseEntity
+from datetime import datetime, timezone
 
 class Post(BaseEntity):
     def __init__(self, title: str, content: str, author_id: str):
@@ -14,6 +15,5 @@ class Post(BaseEntity):
 
 class PostBaseService(BaseService[Post]):
     def generate_id(self, entity: Post) -> str:
-       
-        timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
         return f"post::{entity.title.replace(' ', '_').lower()}::{timestamp}"
