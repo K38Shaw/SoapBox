@@ -1,27 +1,9 @@
-# from typing import Optional
-# from datetime import datetime
-# from base_service import BaseService, CouchbaseService
-# from base_service import BaseEntity
-
-# class User(BaseEntity):
-#     def __init__(self, username: str, email: str):
-#         self.id: Optional[str] = None
-#         self.username = username
-#         self.email = email
-#         self.createdAt: Optional[datetime] = None
-#         self.updatedAt: Optional[datetime] = None
-
-# class UserBaseService(BaseService[User]):
-#     def generate_id(self, entity: User) -> str:
-        
-#         return f"user::{entity.username.lower()}"
-
-from typing import Optional, Tuple, Dict, Any
+from typing import Optional, Tuple, Dict, Any, List
 from datetime import datetime
 import hashlib
 import os
 import jwt
-from base_service import BaseService, CouchbaseService, BaseEntity
+from base_service import BaseService, CouchbaseService, BaseEntity, BaseServiceOptions
 
 class User(BaseEntity):
     def __init__(self, username: str, email: str, password: Optional[str] = None):
@@ -68,25 +50,27 @@ class User(BaseEntity):
 class UserService(BaseService[User]):
     def __init__(
         self, 
-        couchbase_service: CouchbaseService, 
-        entity_type: str = "users",
+        couchbase_service: CouchbaseService,
+        options: Optional[BaseServiceOptions] = None,
         jwt_secret: str = None,
         jwt_expiry: int = 3600
     ):
-        super().__init__(entity_type, couchbase_service)
+        super().__init__("users", couchbase_service, options)
         self.JWT_SECRET = jwt_secret or os.environ.get('JWT_SECRET', 'your-secret-key')
         self.JWT_EXPIRY = jwt_expiry or int(os.environ.get('JWT_EXPIRY', '3600'))  # 1 hour default
-        
+    
     def generate_id(self, entity: User) -> str:
+        """Generate a unique ID for the user based on username."""
         return f"user::{entity.username.lower()}"
     
     async def register_user(self, username: str, email: str, password: str) -> Tuple[bool, str, Optional[User]]:
         """Register a new user."""
-        # Check if user exists
+        # Check if user exists by username
         existing_user = await self.find_by_username(username)
         if existing_user:
             return False, "Username already exists", None
             
+        # Check if user exists by email
         existing_email = await self.find_by_email(email)
         if existing_email:
             return False, "Email already registered", None
@@ -94,7 +78,7 @@ class UserService(BaseService[User]):
         # Create new user
         user = User(username, email, password)
         
-        # User will be saved with created_at timestamp in the create method
+        # User will be saved with createdAt timestamp in the create method
         created_user = await self.create(user)
         if not created_user:
             return False, "Failed to create user", None
@@ -113,7 +97,7 @@ class UserService(BaseService[User]):
         
         # Update last login time
         updates = {
-            "last_login": datetime.utcnow(),
+            "last_login": datetime.utcnow()
         }
         await self.update(user.id, updates)
         
@@ -170,7 +154,7 @@ class UserService(BaseService[User]):
         return users[0]
     
     async def pre_process_create(self, entity: User) -> User:
-        """Ensure entity has required fields."""
+        """Validate entity before creation."""
         if not entity.username or not entity.email:
             raise ValueError("Username and email are required")
         return entity
@@ -190,7 +174,7 @@ class UserService(BaseService[User]):
         
         return user
     
-    async def post_process_get_all(self, entities: list) -> list[User]:
+    async def post_process_get_all(self, entities: List[Dict[str, Any]]) -> List[User]:
         """Convert list of dictionaries to list of User objects."""
         users = []
         for entity in entities:
