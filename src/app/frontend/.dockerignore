@@ -4,4 +4,3 @@ Dockerfile
 .dockerignore
 jest.config.js
 __tests__
-.next

@@ -137,6 +137,22 @@ To run this project, ensure you have the following installed:
   ```bash
   npm start
   ```
+# 📖 Running Storybook for Component Development
+Storybook is set up to allow frontend developers to build and test UI components in isolation.
+
+## 🛠️ Setup Instructions
+
+1️ **Ensure you have all dependencies installed**  
+If you haven't installed dependencies yet, run:
+```sh
+npm install
+```
+2 **Start Storybook**  
+Once dependencies are installed, run:
+```sh
+npm run storybook
+```
+
 #### Docker
 
 1. **Build and run the services** at the root level using Docker Compose:
