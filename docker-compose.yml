@@ -44,6 +44,8 @@ services:
       - ./src/app/backend:/app
     networks:
       - soapbox-network
+    env_file:
+      - ./src/app/backend/.env.dev
 
   frontend:
     build:
