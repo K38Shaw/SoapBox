@@ -181,4 +181,7 @@ class UserService(BaseService[User]):
             user = await self.post_process_get(entity)
             if user:
                 users.append(user)
+                
         return users
+
+
