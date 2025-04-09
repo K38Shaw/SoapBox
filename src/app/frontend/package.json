@@ -45,7 +45,7 @@
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
-    ]
+    ],
     "typescript": "^5"
   }
 }
