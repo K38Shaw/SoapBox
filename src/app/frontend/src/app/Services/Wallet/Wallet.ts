@@ -7,13 +7,25 @@ export enum WalletConnectionStatus {
     declined
 }
 
+// Define the Ethereum interface
+interface EthereumProvider {
+    isMetaMask?: boolean;
+    request: (args: { method: string; params?: unknown[] }) => Promise<unknown>;
+}
+
+declare global {
+    interface Window {
+        ethereum?: EthereumProvider;
+    }
+}
+
 export class WalletConnection {
     provider?: ethers.BrowserProvider;
     signer?: ethers.Signer;
 
     async connectToWallet(): Promise<WalletConnectionStatus> {
-        if ((window as any).ethereum != null) {
-            this.provider = new ethers.BrowserProvider((window as any).ethereum);
+        if (window.ethereum != null) {
+            this.provider = new ethers.BrowserProvider(window.ethereum);
             try {
                 this.signer = await this.provider.getSigner();
                 return WalletConnectionStatus.success;
