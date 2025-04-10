@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image";
 import { WalletConnection, WalletConnectionStatus } from "@/app/Services";
 import { useState } from "react";
 
@@ -13,7 +14,7 @@ export function WalletConnectionButton(){
             <button onClick={async ()=>{
               const result = await wallet.connectToWallet()
               setStatus(result)
-            }}>Connect Your Wallet</button>
+            }}><img src="/MetaMaskFox.svg"/></button>
         )
     }     
 
