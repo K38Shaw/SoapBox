@@ -3,7 +3,7 @@ import { WalletConnection, WalletConnectionStatus } from "@/app/Services";
 import { useState } from "react";
 
 
-let wallet = new WalletConnection();
+const wallet = new WalletConnection();
 
 export function WalletConnectionButton(){
     const [status, setStatus] = useState(WalletConnectionStatus.waiting);
@@ -11,7 +11,7 @@ export function WalletConnectionButton(){
     if (status == WalletConnectionStatus.waiting){
         return (
             <button onClick={async ()=>{
-              let result = await wallet.connectToWallet()
+              const result = await wallet.connectToWallet()
               setStatus(result)
             }}>Connect Your Wallet</button>
         )
