@@ -12,8 +12,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "next": "15.1.7",
     "ethers": "^6.13.5",
+    "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -27,7 +27,6 @@
     "@storybook/experimental-nextjs-vite": "^8.6.4",
     "@storybook/react": "^8.6.4",
     "@storybook/test": "^8.6.4",
-    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
