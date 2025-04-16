@@ -1,12 +1,12 @@
 'use client';
 import Image from "next/image";
 import styles from "./page.module.css";
-import LoginWithApple from "./components/LoginWithApple/page";
-import LoginWithGoogle from "./components/LoginWithGoogle/page";
-import UsernameField from "./components/UsernameField/page";
-import PasswordField from "./components/PasswordField/page";
-import ContinueButton from "./components/ContinueButton/page";
-import MetaMaskButton from "./components/MetaMaskButton/page";
+import { LoginWithApple } from "../components/LoginWithApple/LoginWithApple";
+import { LoginWithGoogle } from "../components/LoginWithGoogle/LoginWithGoogle";
+import { UsernameField } from "../components/UsernameField/UsernameField";
+import { PasswordField } from "../components/PasswordField/PasswordField";
+import { ContinueButton } from "../components/ContinueButton/ContinueButton";
+import { MetaMaskButton } from "../components/MetaMaskButton/MetaMaskButton";
 
 export default function Home() {
   return (
@@ -17,7 +17,6 @@ export default function Home() {
       <LoginWithGoogle />
       <MetaMaskButton />
       <ContinueButton />
-      
     </div>
   );
 }

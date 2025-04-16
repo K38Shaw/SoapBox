@@ -1,7 +1,7 @@
 import style from "./page.module.css";
 import Image from "next/image";
 
-export default function MetaMaskButton() {
+export const MetaMaskButton: React.FC = () => {
     return ( 
     <div>
         <button className={style.button}>

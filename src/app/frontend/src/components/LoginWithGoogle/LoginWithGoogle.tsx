@@ -1,7 +1,7 @@
 import  styles from "./page.module.css";
 import Image from "next/image";
 
-export default function LoginWithGoogle() {
+export const LoginWithGoogle: React.FC = () => {
     return ( 
     <div>
         <button className={styles.button}>
