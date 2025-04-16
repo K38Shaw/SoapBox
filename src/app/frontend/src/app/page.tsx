@@ -1,3 +1,6 @@
+import styles from "./page.module.css";
+import { WalletConnectionButton } from "./Components";
+
 'use client';
 import Image from "next/image";
 import styles from "./page.module.css";
@@ -11,6 +14,7 @@ import MetaMaskButton from "./components/MetaMaskButton/page";
 export default function Home() {
   return (
     <div className={styles.page}>
+      <WalletConnectionButton/>
       <UsernameField />
       <PasswordField />
       <LoginWithApple />

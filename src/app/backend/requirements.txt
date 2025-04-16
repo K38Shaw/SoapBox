@@ -1,2 +1,2 @@
-couchbase
-pytest
+couchbase==4.3.5
+flask
