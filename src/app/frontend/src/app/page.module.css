@@ -6,13 +6,13 @@
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
 
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
+  display: column;
+  margin: 5em;
   align-items: center;
   justify-items: center;
   min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
+  padding: 4em;
+  gap: 4em;
   font-family: var(--font-geist-sans);
 }
 
@@ -106,6 +106,14 @@ a.secondary {
 
 .footer img {
   flex-shrink: 0;
+}
+
+.metamaskContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
 }
 
 /* Enable hover only on non-touch devices */

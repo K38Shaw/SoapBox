@@ -13,6 +13,11 @@ RUN npm install
 # Copy the entire project
 COPY . .
 
+# Run the build command to generate the .next directory
+RUN npm run build
+
+RUN ls -la .next
+
 # Expose the necessary port
 EXPOSE 3000
 

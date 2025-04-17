@@ -1,0 +1,36 @@
+.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.85em;
+    background-color: black;
+    padding: 0.75em;
+    min-width: 15em;
+    font-size: 1.1em;
+    border: none;
+    transition: 0.3s ease-out;
+    text-align: center;
+    padding-right: 0.25em;
+    max-width: 15em;
+
+}
+
+.button:hover {
+    transition: 0.3s ease-in;
+    background-color: #fefefe;
+    color: black;
+}
+
+.icon {
+    filter: invert(100%);
+    padding-left: 0em;
+    margin-left: -2em;
+    margin-right: 1.2em;
+    transition: 0.3s ease-out;
+}
+
+/* This is the color change on hover for the svg */
+.button:hover .icon {
+    filter: invert(0%);
+}
