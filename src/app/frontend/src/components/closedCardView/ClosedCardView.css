@@ -1,0 +1,125 @@
+.post-container {
+    background-color: #1c1c1e;
+    border-radius: 12px;
+    padding: 16px;
+    width: 90%;
+    max-width: 400px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.post-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.post-user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-username {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.post-title {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.post-content {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.expand-button {
+    background: none;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 15px; 
+    margin-top: 10px;
+    padding: 10px 0;
+    border-top: 1px solid #333;
+}
+
+
+.post-actions button {
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+    padding: 8px 12px; 
+    border-radius: 8px;
+}
+
+
+.like-button:hover,
+.like-button.active {
+    background: linear-gradient(45deg, #9D94FE, #F1ACFF);
+    color: #fff;
+}
+
+.dislike-button:hover,
+.dislike-button.active {
+    background: linear-gradient(45deg, #9D94FE, #F1ACFF);
+    color: #fff;
+}
+
+.post-comment {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #2c2c2e;
+}
+
+.post-comment p {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment-input {
+    width: calc(100% - 20px); 
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #3c3c3e;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    display: block; 
+    margin: 5px auto; 
+}
+
+.comment-input::placeholder {
+    color: #777;
+}
+
+.comment-input:focus {
+    border: 1px solid #9D94FE;
+}
