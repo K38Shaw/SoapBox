@@ -1,5 +1,5 @@
 import React from 'react';
-import { WalletConnectionButton } from "./../Components/walletConnetButton/walletConnectButton";
+import { WalletConnectionButton } from "../../components/walletConnectButton/walletConnectButton";
 import { WalletConnectionStatus } from '@/app/Services';
 import { Meta, StoryObj } from '@storybook/react';
 

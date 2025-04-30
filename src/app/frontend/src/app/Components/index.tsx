@@ -1,1 +1,1 @@
-export { WalletConnectionButton } from "./walletConnetButton/walletConnectButton"
+export { WalletConnectionButton } from "../../components/walletConnectButton/walletConnectButton"
