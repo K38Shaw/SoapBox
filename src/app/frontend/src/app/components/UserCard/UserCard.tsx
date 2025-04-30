@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from './UserCard.module.css';  // Import the CSS Module
+import styles from './UserCard.module.css';
 
 export type UserCardProps = {
   username: string;

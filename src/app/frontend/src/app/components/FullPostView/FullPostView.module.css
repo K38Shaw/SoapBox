@@ -1,0 +1,31 @@
+.fullPostContainer {
+  padding: 16px;
+  background-color: #111;
+  color: white;
+  border-radius: 12px;
+  margin: 16px auto;
+  max-width: 600px;
+  width: 90%;
+}
+
+.topic {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.body {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.4;
+  font-size: 1rem;
+}
+
+.image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  margin-top: 12px;
+  border-radius: 8px;
+}

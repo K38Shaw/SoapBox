@@ -1,0 +1,37 @@
+.searchContainer {
+    padding: 20px;
+    background-color: #000;
+    color: white;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  .searchTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .searchInput {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #555;
+    outline: none;
+    margin-bottom: 24px;
+    background-color: #1a1a1a;
+    color: white;
+  }
+  
+  .searchInput::placeholder {
+    color: #aaa;
+  }
+  
+  .resultsTitle {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #b084f9;
+  }
+  

@@ -1,5 +1,8 @@
+// UserPosts.tsx
+import { useState } from 'react';
 import styles from './UserPosts.module.css';
 import PostCard from '../PostCard/PostCard';
+import FullPostView from '../FullPostView/FullPostView';
 
 interface Post {
   id: number;
@@ -9,25 +12,46 @@ interface Post {
   videoUrl?: string;
 }
 
-const dummyPosts: Post[] = [
+const initialPosts: Post[] = [
   {
-    id: 1, topic: "Tech:", body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', imageUrl: "/Bannana.jpeg",
-   
-  } ,
+    id: 1,
+    topic: "Topic:",
+    body: "Just discovered an amazing new coffee shop downtown. Their cold brew is literally life-changing! Anyone else tried specialty coffee recently?",
+    imageUrl: "/Bannana.jpeg",
+  },
   {
-    id: 2, topic: "AI:",body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', imageUrl: "/Bannana.jpeg",
-    
+    id: 2,
+    topic: "Topic:",
+    body: "Working on a new side project using React and TypeScript. The type safety is so worth the extra effort. What tech stack are you all using these days?",
+    imageUrl: "/Bannana.jpeg",
+  },
+  {
+    id: 3,
+    topic: "Topic:",
+    body: "Finally got tickets to that concert I've been waiting for all year! Who else is going to be at Madison Square Garden next week?",
+    imageUrl: "/Bannana.jpeg",
   },
 ];
 
-const UserPosts = () => {
+export default function UserPosts() {
+  const [posts] = useState<Post[]>(initialPosts);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+
+  if (selectedPost) {
+    return <FullPostView post={selectedPost} onBack={() => setSelectedPost(null)} />;
+  }
+
   return (
     <div className={styles.postsContainer}>
-      {dummyPosts.map(post => (
-        <PostCard key={post.id} topic={post.topic} body={post.body} imageUrl={post.imageUrl}  />
+      {posts.map((post) => (
+        <PostCard
+          key={post.id}
+          topic={post.topic}
+          body={post.body}
+          imageUrl={post.imageUrl}
+          onViewFull={() => setSelectedPost(post)}
+        />
       ))}
     </div>
   );
-};
-
-export default UserPosts;
+}

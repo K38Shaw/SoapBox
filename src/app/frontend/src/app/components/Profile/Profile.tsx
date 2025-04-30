@@ -1,34 +1,65 @@
-import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import UserPosts from "../UserPosts/UserPosts";
+import { useState } from "react";
 import BottomNav from "../BottomNav/BottomNav";
+import Search from "../Search/Search";
+import CreatePostForm from "../CreatePostForm/CreatPostForm";
 import styles from "./Profile.module.css";
+import PostCard from "../PostCard/PostCard";
+import FullPostView from "../FullPostView/FullPostView";
 
-const Profile = () => {
+interface Post {
+  id: number;
+  topic: string;
+  body: string;
+  imageUrl?: string;
+}
+
+export default function Profile() {
+  const [view, setView] = useState<"profile" | "search" | "create">("profile");
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+
+  const handleCreate = (newPost: { topic: string; body: string; imageUrl?: string }) => {
+    const postWithId = { ...newPost, id: Date.now() };
+    setPosts([postWithId, ...posts]);
+    setView("profile");
+  };
+
   return (
-    <div className={styles.container}>
-    
+    <div className={styles.profileContainer}>
+      {view === "search" && <Search />}
 
-      {/* Profile Header */}
-      <div className={styles.section}>
-        
-        <div className={styles.nameAndAvatar}>
-        <ProfileHeader avatarUrl={""} username={""} alias={""} />
-        <h3>xxx JohnDoe xxx</h3>
+      {view === "create" && <CreatePostForm onCreate={handleCreate} />}
+
+      {view === "profile" && !selectedPost && (
+        <div>
+          <div className={styles.profileHeader}>
+            <div className={styles.avatar}></div>
+            <div className={styles.username}>Xx_JackDon_xX</div>
+            <div className={styles.title}>Xx_JackDon’s_xX Posts</div>
+          </div>
+          <div className={styles.postsContainer}>
+            {posts.map((post) => (
+              <PostCard
+                key={post.id}
+                topic={post.topic}
+                body={post.body}
+                imageUrl={post.imageUrl || ""}
+                onViewFull={() => setSelectedPost(post)}
+              />
+            ))}
+          </div>
         </div>
-        <h2>Your Posts</h2>
-      </div>
+      )}
 
+      {selectedPost && (
+        <FullPostView post={selectedPost} onBack={() => setSelectedPost(null)} />
+      )}
 
-      {/* User Posts Section */}
-      <div className={styles.section2}>
-        <UserPosts />
-      </div>
-
-    
-        <BottomNav />
-      
+      <BottomNav
+        onCreatePost={() => setView("create")}
+        onProfile={() => setView("profile")}
+        onSearch={() => setView("search")}
+      />
     </div>
   );
-};
-
-export default Profile;
+}

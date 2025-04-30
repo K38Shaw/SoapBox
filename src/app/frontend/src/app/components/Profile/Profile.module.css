@@ -1,116 +1,35 @@
-.container {
-  padding-bottom: 400px;
+.profileContainer {
+  background-color: #000;
+  color: #fff;
+  padding: 16px;
+  min-height: 100vh;
+  padding-bottom: 80px; /* room for bottom nav */
+}
+
+.profileHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #444;
+  margin-bottom: 8px;
+}
+
+.username {
+  font-size: 1.2rem;
+  font-weight: bold;
   text-align: center;
-  background-color: black;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
-.section {
-  margin: 20px 0;
-  border-bottom: 1px solid white;
-  background-color: black;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-}
-.section h2{
-  font-size: xx-large;
-}
-
-.nameAndAvatar {
-  padding-right: 140px;
-  padding-bottom: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.h2 {
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.section2 {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 0;
-}
-.section2 h2{
-  padding-bottom: 70px;
-}
-
-.userPosts {
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.postCard {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  background-color: white;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #ddd;
-}
-
-.postTopic {
-  background-color: black;
-  color: white;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.postContent {
-  background-color: #e0e0e0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 15px;
-}
-
-.mediaIcons {
-  display: flex;
-  gap: 10px;
-}
-
-.mediaIcons img {
-  width: 30px;
-  height: 30px;
-}
-
-.bottomNav {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(to right, #6a00f4, #ff00ff);
-  display: flex;
-  justify-content: space-around;
-  padding: 15px 0;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  align-items: center;
-}
-
-.bottomNav img {
-  width: 25px;
-  height: 25px;
+.title {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #ccc;
 }

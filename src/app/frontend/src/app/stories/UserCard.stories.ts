@@ -1,30 +1,29 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
-import UserCard, { UserCardProps } from '../components/UserCard/UserCard';
+import React from "react";
+import { StoryObj, Meta } from "@storybook/react";
+import UserCard from "../components/UserCard/UserCard";
 
-// Default export to define the component and its properties
-export default {
-  title: 'Components/UserCard', // Title in Storybook UI
+const meta = {
+  title: "Components/UserCard",
   component: UserCard,
   argTypes: {
-    // You can define props or arguments to be editable in Storybook
     username: { control: 'text' },
     userId: { control: 'text' },
   },
-} as Meta;
+} satisfies Meta<typeof UserCard>;
 
-// Template that renders the UserCard component with dynamic args
-const Template: StoryFn<UserCardProps> = (args: React.JSX.IntrinsicAttributes & { username: string; userId?: string; }) => <UserCard {...args} />;
+export default meta;
 
-// Default story
-export const Default = Template.bind({});
-Default.args = {
-  username: 'John Doe',
-  userId: '1234',
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    username: 'John Doe',
+    userId: '1234',
+  },
 };
 
-// Story without userId
-export const WithoutUserId = Template.bind({});
-WithoutUserId.args = {
-  username: 'Jane Smith',
+export const WithoutUserId: Story = {
+  args: {
+    username: 'Jane Smith',
+  },
 };

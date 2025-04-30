@@ -1,12 +1,15 @@
 import React from "react";
-import { Meta, StoryFn } from "@storybook/react";
+import { StoryObj, Meta } from "@storybook/react";
 import UserPosts from "../components/UserPosts/UserPosts";
 
-export default {
+const meta = {
   title: "Components/UserPosts",
   component: UserPosts,
-} as Meta;
+} satisfies Meta<typeof UserPosts>;
 
-const Template: StoryFn = () => <UserPosts />;
+export default meta;
 
-export const Default = Template.bind({});
+type Story = StoryObj<typeof meta>;
+
+// Use StoryObj instead of StoryFn
+export const Default: Story = {};

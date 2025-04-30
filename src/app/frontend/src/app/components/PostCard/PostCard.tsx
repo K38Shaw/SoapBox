@@ -1,25 +1,22 @@
-import styles from './PostCard.module.css';
+import styles from "./PostCard.module.css";
 
 interface PostCardProps {
   topic: string;
-  body:string;
-  imageUrl: string;
+  body: string;
+  imageUrl?: string;
+  onViewFull: () => void;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ topic,body, imageUrl }) => {
+export default function PostCard({ topic, body, imageUrl, onViewFull }: PostCardProps) {
   return (
-    <div className={styles.card}>
-      {/* Left: Topic Section */}
-      <div className={styles.topic}>{topic}
-         <div className={styles.body}>{body}</div>
-         </div>
-
-      {/* Right: Image Section */}
-      <div className={styles.media}>
-        <img src={imageUrl} alt="Post Image" />
+    <div className={styles.postCard} onClick={onViewFull}>
+      <div className={styles.textContent}>
+        <div className={styles.topic}>Topic: {topic}</div>
+        <div className={styles.body}>{body}</div>
       </div>
+      {imageUrl && (
+        <img src={imageUrl} alt="Post" className={styles.image} />
+      )}
     </div>
   );
-};
-
-export default PostCard;
+}
