@@ -3,7 +3,8 @@ from datetime import datetime
 import hashlib
 import os
 import jwt
-from base_service import BaseService, CouchbaseService, BaseEntity, BaseServiceOptions
+from .base_service import BaseService, CouchbaseService, BaseEntity, BaseServiceOptions
+
 
 class User(BaseEntity):
     def __init__(self, username: str, email: str, password: Optional[str] = None):
